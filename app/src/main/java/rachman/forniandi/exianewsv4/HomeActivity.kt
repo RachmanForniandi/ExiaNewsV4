@@ -6,11 +6,12 @@ import rachman.forniandi.exianewsv4.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
-    private val binding = ActivityHomeBinding. inflate(layoutInflater)
+    private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_home)
         setContentView(binding.root)
+
     }
 }

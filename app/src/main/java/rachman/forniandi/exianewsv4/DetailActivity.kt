@@ -7,7 +7,7 @@ import rachman.forniandi.exianewsv4.databinding.ActivityHomeBinding
 
 class DetailActivity : AppCompatActivity() {
 
-    private val binding = ActivityDetailBinding. inflate(layoutInflater)
+    private val binding by lazy {ActivityDetailBinding.inflate(layoutInflater)  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
