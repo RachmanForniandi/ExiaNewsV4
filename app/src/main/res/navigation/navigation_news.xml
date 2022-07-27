@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="rachman.forniandi.exianewsv4.HomeFragment"
+        android:name="rachman.forniandi.exianewsv4.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_bookMark"
-        android:name="rachman.forniandi.exianewsv4.BookMarkFragment"
+        android:name="rachman.forniandi.exianewsv4.ui.bookmark.BookMarkFragment"
         android:label="fragment_book_mark"
         tools:layout="@layout/fragment_book_mark" />
 </navigation>

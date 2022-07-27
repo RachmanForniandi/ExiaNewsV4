@@ -7,6 +7,10 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import rachman.forniandi.exianewsv4.source.network.networkModule
 import rachman.forniandi.exianewsv4.source.repositoryModule
+import rachman.forniandi.exianewsv4.ui.bookmark.bookMarkModule
+import rachman.forniandi.exianewsv4.ui.bookmark.bookmarkViewModel
+import rachman.forniandi.exianewsv4.ui.home.homeModule
+import rachman.forniandi.exianewsv4.ui.home.homeViewModel
 import timber.log.Timber
 
 class NewsApp:Application() {
@@ -21,7 +25,11 @@ class NewsApp:Application() {
             androidContext(this@NewsApp)
             modules(
                 networkModule,
-                repositoryModule
+                repositoryModule,
+                homeViewModel,
+                homeModule,
+                bookmarkViewModel,
+                bookMarkModule
             )
         }
     }

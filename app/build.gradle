@@ -78,7 +78,7 @@ dependencies {
 
     def koin_version = '3.2.0'
     implementation "io.insert-koin:koin-android:$koin_version"
-    //implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "io.insert-koin:koin-core:$koin_version"
 
     def glide_version = '4.12.0'

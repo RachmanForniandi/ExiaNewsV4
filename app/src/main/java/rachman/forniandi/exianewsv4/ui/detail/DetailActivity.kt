@@ -1,4 +1,4 @@
-package rachman.forniandi.exianewsv4
+package rachman.forniandi.exianewsv4.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
