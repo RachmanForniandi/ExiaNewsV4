@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 import rachman.forniandi.exianewsv4.databinding.CustomToolbarBinding
-import rachman.forniandi.exianewsv4.databinding.FragmentBookMarkBinding
-import rachman.forniandi.exianewsv4.ui.home.HomeFragment
-import rachman.forniandi.exianewsv4.ui.home.HomeViewModel
+import rachman.forniandi.exianewsv4.databinding.FragmentBookmarkBinding
 
 val bookMarkModule = module {
-    factory { BookMarkFragment() }
+    factory { BookmarkFragment() }
 }
-class BookMarkFragment : Fragment() {
+class BookmarkFragment : Fragment() {
 
-    private lateinit var binding: FragmentBookMarkBinding
+    private lateinit var binding: FragmentBookmarkBinding
     private lateinit var bindingToolbar: CustomToolbarBinding
     private val viewModel: BookmarkViewModel by viewModel()
 
@@ -25,7 +23,7 @@ class BookMarkFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBookMarkBinding.inflate(inflater, container, false)
+        binding = FragmentBookmarkBinding.inflate(inflater, container, false)
         bindingToolbar = binding.toolbar
         return binding.root
     }

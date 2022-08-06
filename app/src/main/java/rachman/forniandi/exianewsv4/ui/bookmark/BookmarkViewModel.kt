@@ -2,7 +2,7 @@ package rachman.forniandi.exianewsv4.ui.bookmark
 
 import androidx.lifecycle.ViewModel
 import org.koin.dsl.module
-import rachman.forniandi.exianewsv4.source.NewsRepository
+import rachman.forniandi.exianewsv4.source.news.NewsRepository
 
 val bookmarkViewModel= module {
     factory { BookmarkViewModel(get()) }

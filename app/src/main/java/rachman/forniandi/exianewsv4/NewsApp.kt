@@ -6,7 +6,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import rachman.forniandi.exianewsv4.source.network.networkModule
-import rachman.forniandi.exianewsv4.source.repositoryModule
+import rachman.forniandi.exianewsv4.source.news.repositoryModule
 import rachman.forniandi.exianewsv4.ui.bookmark.bookMarkModule
 import rachman.forniandi.exianewsv4.ui.bookmark.bookmarkViewModel
 import rachman.forniandi.exianewsv4.ui.home.homeModule
@@ -18,9 +18,10 @@ class NewsApp:Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        Timber.e("run base application")
+        //Timber.e("run base application")
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         startKoin {
+            if (BuildConfig.DEBUG)
             androidLogger()
             androidContext(this@NewsApp)
             modules(

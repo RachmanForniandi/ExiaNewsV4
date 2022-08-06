@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="rachman.forniandi.exianewsv4.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/navigation_bookMark"
-        android:name="rachman.forniandi.exianewsv4.ui.bookmark.BookMarkFragment"
-        android:label="fragment_book_mark"
-        tools:layout="@layout/fragment_book_mark" />
+        android:id="@+id/navigation_bookmark"
+        android:name="rachman.forniandi.exianewsv4.ui.bookmark.BookmarkFragment"
+        android:label="@string/title_bookmark"
+        tools:layout="@layout/fragment_bookmark" />
 </navigation>
