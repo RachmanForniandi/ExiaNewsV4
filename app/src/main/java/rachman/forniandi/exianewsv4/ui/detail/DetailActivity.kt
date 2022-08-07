@@ -2,9 +2,12 @@ package rachman.forniandi.exianewsv4.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
+import rachman.forniandi.exianewsv4.R
 import rachman.forniandi.exianewsv4.databinding.ActivityDetailBinding
 import rachman.forniandi.exianewsv4.databinding.ActivityHomeBinding
 import rachman.forniandi.exianewsv4.databinding.CustomToolbarBinding
@@ -46,6 +49,16 @@ class DetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return super.onSupportNavigateUp()
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_bookmark,menu)
+        val menuBookmark = menu.findItem(R.id.action_bookmark)
+        menuBookmark.setOnMenuItemClickListener {
+            Toast.makeText(this@DetailActivity,"add bookmark",Toast.LENGTH_SHORT).show()
+            menuBookmark.setIcon(R.drawable.ic_check)
+            true
+        }
+        return super.onCreateOptionsMenu(menu)
     }
 }

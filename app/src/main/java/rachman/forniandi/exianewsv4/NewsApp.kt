@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import rachman.forniandi.exianewsv4.persistence.databaseModule
 import rachman.forniandi.exianewsv4.source.network.networkModule
 import rachman.forniandi.exianewsv4.source.news.repositoryModule
 import rachman.forniandi.exianewsv4.ui.bookmark.bookMarkModule
@@ -30,7 +31,8 @@ class NewsApp:Application() {
                 homeViewModel,
                 homeModule,
                 bookmarkViewModel,
-                bookMarkModule
+                bookMarkModule,
+                databaseModule
             )
         }
     }
