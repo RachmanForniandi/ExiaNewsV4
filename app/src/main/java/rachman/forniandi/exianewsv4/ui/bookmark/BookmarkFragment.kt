@@ -29,6 +29,7 @@ class BookmarkFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindingToolbar.txtTitle.text = viewModel.title
+        //bindingToolbar.txtTitle.text = viewModel.title
+        bindingToolbar.title = viewModel.title
     }
 }

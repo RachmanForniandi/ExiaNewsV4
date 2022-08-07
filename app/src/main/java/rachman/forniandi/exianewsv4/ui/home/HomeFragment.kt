@@ -39,13 +39,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindingToolbar.txtTitle.text = viewModel.title
+        //bindingToolbar.txtTitle.text = viewModel.title
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        bindingToolbar.title = viewModel.title
         Timber.e(viewModel.categories.toString())
+
         binding.listCategory.adapter = categoryAdapter
         binding.listNews.adapter = newsAdapter
 
         viewModel.category.observe(viewLifecycleOwner,{
             Timber.e(it)
+            viewModel.fetchNewsData()
         })
         viewModel.news.observe(viewLifecycleOwner,{
             Timber.e(it.articles.toString())

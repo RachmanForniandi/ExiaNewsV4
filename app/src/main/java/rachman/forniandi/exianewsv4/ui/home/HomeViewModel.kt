@@ -20,6 +20,7 @@ class HomeViewModel (
     val title ="Berita"
     val category by lazy { MutableLiveData<String>() }
     val message by lazy { MutableLiveData<String>() }
+    val loading by lazy { MutableLiveData<Boolean>() }
     val news by lazy { MutableLiveData<NewsModel>() }
     init {
         category.value=""
@@ -28,10 +29,12 @@ class HomeViewModel (
     }
 
     fun fetchNewsData(){
+        loading.value = true
         viewModelScope.launch {
             try {
-                val response =repository.fetchDataNews("","",1)
+                val response =repository.fetchDataNews(category.value!!,"",1)
                 news.value = response
+                loading.value = false
             }catch (e:Exception){
                 message.value="Terjadi Error data"
             }
