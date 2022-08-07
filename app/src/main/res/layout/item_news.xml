@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="article"
+            type="rachman.forniandi.exianewsv4.source.ArticleModel" />
+        <variable
+            name="format"
+            type="rachman.forniandi.exianewsv4.util.FormatUtil" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp">
 
     <com.google.android.material.card.MaterialCardView
@@ -21,6 +32,7 @@
             tools:src="@drawable/example"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
+            app:loadImage="@{article.urlToImage}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
@@ -55,3 +67,4 @@
         tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

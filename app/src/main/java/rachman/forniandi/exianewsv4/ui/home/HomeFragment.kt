@@ -1,5 +1,6 @@
 package rachman.forniandi.exianewsv4.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import rachman.forniandi.exianewsv4.databinding.CustomToolbarBinding
 import rachman.forniandi.exianewsv4.databinding.FragmentHomeBinding
 import rachman.forniandi.exianewsv4.source.ArticleModel
 import rachman.forniandi.exianewsv4.source.news.CategoryModel
+import rachman.forniandi.exianewsv4.ui.detail.DetailActivity
 import timber.log.Timber
 
 val homeModule = module {
@@ -54,8 +56,8 @@ class HomeFragment : Fragment() {
         })
         viewModel.news.observe(viewLifecycleOwner,{
             Timber.e(it.articles.toString())
-            binding.imgAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE
-            binding.txtAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE
+            /*binding.imgAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE
+            binding.txtAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE*/
             newsAdapter.addNews(it.articles)
         })
         viewModel.message.observe(viewLifecycleOwner,{
@@ -77,7 +79,10 @@ class HomeFragment : Fragment() {
     private val newsAdapter by lazy {
         NewsAdapter(arrayListOf(),object :NewsAdapter.OnNewsClickListener{
             override fun onClick(news: ArticleModel) {
-                TODO("Not yet implemented")
+                startActivity(
+                    Intent(requireActivity(), DetailActivity::class.java)
+                        .putExtra("detail", news)
+                )
             }
         })
     }
