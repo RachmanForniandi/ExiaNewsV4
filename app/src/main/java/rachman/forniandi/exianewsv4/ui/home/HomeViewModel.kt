@@ -28,11 +28,13 @@ class HomeViewModel (
         fetchNewsData()
     }
 
+    var query =""
+
     fun fetchNewsData(){
         loading.value = true
         viewModelScope.launch {
             try {
-                val response =repository.fetchDataNews(category.value!!,"",1)
+                val response =repository.fetchDataNews(category.value!!,query,1)
                 news.value = response
                 loading.value = false
             }catch (e:Exception){

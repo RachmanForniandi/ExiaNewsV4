@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
+import rachman.forniandi.exianewsv4.R
 import rachman.forniandi.exianewsv4.adapters.CategoryAdapter
 import rachman.forniandi.exianewsv4.adapters.NewsAdapter
 import rachman.forniandi.exianewsv4.databinding.CustomToolbarBinding
@@ -44,16 +46,38 @@ class HomeFragment : Fragment() {
         //bindingToolbar.txtTitle.text = viewModel.title
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
         bindingToolbar.title = viewModel.title
-        Timber.e(viewModel.categories.toString())
+        bindingToolbar.container.inflateMenu(R.menu.menu_search)
+        val menu = binding.toolbar.container.menu
+        val search = menu.findItem(R.id.action_search)
+        val searchView = search.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                firstLoad()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    viewModel.query = it
+                }
+                return true
+            }
+        })
+        //Timber.e(viewModel.categories.toString())
 
         binding.listCategory.adapter = categoryAdapter
-        binding.listNews.adapter = newsAdapter
+
 
         viewModel.category.observe(viewLifecycleOwner,{
-            Timber.e(it)
-            viewModel.fetchNewsData()
+            //Timber.e(it)
+            //viewModel.fetchNewsData()
+            firstLoad()
         })
+
+        binding.listNews.adapter = newsAdapter
         viewModel.news.observe(viewLifecycleOwner,{
             Timber.e(it.articles.toString())
             /*binding.imgAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE
@@ -65,6 +89,11 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun firstLoad(){
+        binding.scroll.scrollTo(0,0)
+        viewModel.fetchNewsData()
     }
 
     private val categoryAdapter by lazy {
