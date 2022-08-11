@@ -2,14 +2,10 @@ package rachman.forniandi.exianewsv4.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import rachman.forniandi.exianewsv4.R
 import rachman.forniandi.exianewsv4.databinding.ItemNewsBinding
 import rachman.forniandi.exianewsv4.source.ArticleModel
-import rachman.forniandi.exianewsv4.source.NewsModel
-import rachman.forniandi.exianewsv4.source.news.CategoryModel
+import rachman.forniandi.exianewsv4.util.FormatUtil
 
 class NewsAdapter(val articles:ArrayList<ArticleModel>,
                   val listener: OnNewsClickListener)
@@ -18,6 +14,7 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
     class NewsHolder(val binding: ItemNewsBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(article: ArticleModel){
             binding.article = article
+            binding.format = FormatUtil()
         }
     }
 
@@ -47,8 +44,14 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
     }
 
     fun addNews(data:List<ArticleModel>){
-        articles.clear()
+        //articles.clear()
         articles.addAll(data)
+        //notifyDataSetChanged()
+        notifyItemRangeInserted((articles.size - data.size),data.size)
+    }
+
+    fun clear(){
+        articles.clear()
         notifyDataSetChanged()
     }
 

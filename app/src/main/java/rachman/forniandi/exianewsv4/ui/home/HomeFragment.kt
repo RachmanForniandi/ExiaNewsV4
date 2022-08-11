@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.NestedScrollView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 import rachman.forniandi.exianewsv4.R
@@ -79,20 +80,29 @@ class HomeFragment : Fragment() {
 
         binding.listNews.adapter = newsAdapter
         viewModel.news.observe(viewLifecycleOwner,{
-            Timber.e(it.articles.toString())
-            /*binding.imgAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE
-            binding.txtAlert.visibility = if (it.articles.isEmpty())View.VISIBLE else View.GONE*/
+           if (viewModel.page ==1)newsAdapter.clear()
             newsAdapter.addNews(it.articles)
         })
+
         viewModel.message.observe(viewLifecycleOwner,{
             it?.let {
                 Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+                viewModel.loading.postValue(false)
             }
         })
+
+        binding.scroll.setOnScrollChangeListener {
+                v: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
+            if (scrollY == v?.getChildAt(0)!!.measuredHeight - v.measuredHeight) {
+                if (viewModel.page <= viewModel.total && viewModel.loadMore.value == false) viewModel.fetchNewsData()
+            }
+        }
     }
 
     private fun firstLoad(){
         binding.scroll.scrollTo(0,0)
+        viewModel.page=1
+        viewModel.total=1
         viewModel.fetchNewsData()
     }
 

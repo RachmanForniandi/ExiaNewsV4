@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".ui.home.HomeFragment">
+
     <data>
         <variable
             name="viewModel"
@@ -86,26 +87,26 @@
         app:layout_constraintBottom_toTopOf="@+id/pg_bottom">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
+            android:visibility="@{viewModel.news.articles.size() > 0  ? view.VISIBLE : view.GONE}"
+            tools:visibility="visible"
             android:id="@+id/list_news"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_news"
-            android:visibility="@{viewModel.news.articles.size() > 0 ? view.VISIBLE:view.GONE  }"
-            tools:visibility="visible"/>
-        <!---->
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
     </androidx.core.widget.NestedScrollView>
 
     <ProgressBar
+        android:id="@+id/pg_bottom"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
-        android:id="@+id/pg_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:indeterminate="true"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"/>
+        android:visibility="@{viewModel.loadMore ? view.VISIBLE : view.GONE}"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

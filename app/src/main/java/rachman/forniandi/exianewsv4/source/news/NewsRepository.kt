@@ -13,14 +13,14 @@ val repositoryModule = module {
 class NewsRepository(private val apiClient: APIClient,val db:NewsDao) {
 
     suspend fun fetchDataNews(
-        category:String,
+        category: String? = "",
         query: String,
         page:Int,
     ): NewsModel {
         return apiClient.getNews(
             BuildConfig.API_KEY,
             "id",
-            category,
+            category!!,
             query,
             page
         )

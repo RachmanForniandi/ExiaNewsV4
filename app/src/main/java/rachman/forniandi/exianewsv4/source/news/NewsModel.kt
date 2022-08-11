@@ -12,17 +12,17 @@ data class NewsModel(
 @Entity(tableName = "tableArticle")
 data class ArticleModel(
     val source:SourceModel?,
-    val author:String?,
-    val title: String?,
-    val description:String?,
-    val url:String?,
-    val urlToImage:String?,
+    val author:String?= "",
+    val title: String?= "",
+    val description:String?= "",
+    val url:String?= "",
+    val urlToImage:String?= "",
     @PrimaryKey(autoGenerate = false)
     val publishedAt:String,
-    val content:String?
+    val content:String?= ""
 ):Serializable
 
 data class SourceModel(
-    val id:String?,
-    val name:String?
+    val id:String?= "",
+    val name:String? = ""
 ):Serializable
