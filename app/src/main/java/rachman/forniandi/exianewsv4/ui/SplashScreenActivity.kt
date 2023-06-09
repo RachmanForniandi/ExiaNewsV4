@@ -19,6 +19,7 @@ class SplashScreenActivity : AppCompatActivity() {
         Timer("splashGone", true).schedule(3000) {
             val intent = Intent(this@SplashScreenActivity,HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
