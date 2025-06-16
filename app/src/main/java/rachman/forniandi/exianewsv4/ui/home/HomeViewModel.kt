@@ -1,5 +1,6 @@
 package rachman.forniandi.exianewsv4.ui.home
 
+import android.provider.Settings.Global.getString
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,7 +20,7 @@ val homeViewModel = module {
 class HomeViewModel (
     val repository: NewsRepository
     ): ViewModel() {
-    val title ="Berita"
+    val title ="ExiaNewsV4"
     val category by lazy { MutableLiveData<String>() }
     val message by lazy { MutableLiveData<String>() }
     val loading by lazy { MutableLiveData<Boolean>() }
@@ -49,19 +50,19 @@ class HomeViewModel (
                 loading.value = false
                 loadMore.value = false
             }catch (e:Exception){
-                message.value="Terjadi Error data"
+                message.value=e.message
             }
         }
     }
     val categories = listOf<CategoryModel>(
-        CategoryModel("","Berita Utama"),
-        CategoryModel("business","Bisnis"),
-        CategoryModel("entertainment","Hiburan"),
-        CategoryModel("general","Umum"),
-        CategoryModel("health","Kesehatan"),
-        CategoryModel("science","Sains"),
-        CategoryModel("sports","Olah Raga"),
-        CategoryModel("technology","Teknologi")
+        CategoryModel("","Headlines"),
+        CategoryModel("business","Business"),
+        CategoryModel("entertainment","Entertainment"),
+        CategoryModel("general","General"),
+        CategoryModel("health","Health"),
+        CategoryModel("science","Science"),
+        CategoryModel("sports","Sports"),
+        CategoryModel("technology","Technology")
     )
 
 }

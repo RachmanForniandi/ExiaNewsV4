@@ -1,11 +1,11 @@
 package rachman.forniandi.exianewsv4.source.news
 
-import org.koin.dsl.module
+
 import rachman.forniandi.exianewsv4.BuildConfig
+import org.koin.dsl.module
 import rachman.forniandi.exianewsv4.source.ArticleModel
 import rachman.forniandi.exianewsv4.source.NewsModel
 import rachman.forniandi.exianewsv4.source.network.APIClient
-import retrofit2.http.Query
 
 val repositoryModule = module {
     factory { NewsRepository(get(),get()) }
@@ -19,7 +19,7 @@ class NewsRepository(private val apiClient: APIClient,val db:NewsDao) {
     ): NewsModel {
         return apiClient.getNews(
             BuildConfig.API_KEY,
-            "id",
+            "us",
             category!!,
             query,
             page
