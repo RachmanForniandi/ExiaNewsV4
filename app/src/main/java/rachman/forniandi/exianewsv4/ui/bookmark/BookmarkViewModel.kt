@@ -7,9 +7,9 @@ import rachman.forniandi.exianewsv4.source.news.NewsRepository
 val bookmarkViewModel= module {
     factory { BookmarkViewModel(get()) }
 }
-class BookmarkViewModel(val repository: NewsRepository):ViewModel(
+class BookmarkViewModel(repository: NewsRepository):ViewModel(
 
 ) {
-    val title="Disimpan"
+    val title="Saved"
     val articles = repository.db.findAll()
 }
