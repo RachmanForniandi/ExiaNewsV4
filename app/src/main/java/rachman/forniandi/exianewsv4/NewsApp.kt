@@ -1,5 +1,6 @@
 package rachman.forniandi.exianewsv4
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import org.koin.android.ext.koin.androidContext
@@ -18,6 +19,7 @@ import timber.log.Timber
 
 class NewsApp:Application() {
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())

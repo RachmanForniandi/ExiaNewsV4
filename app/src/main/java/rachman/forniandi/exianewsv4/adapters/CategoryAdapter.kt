@@ -1,5 +1,6 @@
 package rachman.forniandi.exianewsv4.adapters
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,7 @@ class CategoryAdapter(val categories:List<CategoryModel>,
         fun onClick(category:CategoryModel)
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setColor(textView: TextView){
         items.forEach{
             it.setBackgroundColor(R.color.white)

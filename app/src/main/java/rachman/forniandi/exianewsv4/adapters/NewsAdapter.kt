@@ -36,12 +36,10 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return if (viewType== HEADLINES){
             HeadLineHolder(
-                ItemHeadlineBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-            )
-        }else {NewsHolder(
-            ItemNewsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        )
-            }
+                ItemHeadlineBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        }else {
+            NewsHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        }
     }
 
     override fun getItemViewType(position: Int) = VIEW_TYPE

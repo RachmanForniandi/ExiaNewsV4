@@ -35,8 +35,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for th
-        // is fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         bindingToolbar = binding.toolbar
         return binding.root
@@ -44,7 +42,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //bindingToolbar.txtTitle.text = viewModel.title
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
@@ -67,30 +64,28 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
-        //Timber.e(viewModel.categories.toString())
-
         binding.listCategory.adapter = categoryAdapter
 
 
-        viewModel.category.observe(viewLifecycleOwner,{
+        viewModel.category.observe(viewLifecycleOwner) {
             //Timber.e(it)
             //viewModel.fetchNewsData()
             NewsAdapter.VIEW_TYPE = if (it!!.isEmpty()) 1 else 2
             firstLoad()
-        })
+        }
 
         binding.listNews.adapter = newsAdapter
-        viewModel.news.observe(viewLifecycleOwner,{
-           if (viewModel.page ==1)newsAdapter.clear()
+        viewModel.news.observe(viewLifecycleOwner) {
+            if (viewModel.page == 1) newsAdapter.clear()
             newsAdapter.addNews(it.articles)
-        })
+        }
 
-        viewModel.message.observe(viewLifecycleOwner,{
+        viewModel.message.observe(viewLifecycleOwner) {
             it?.let {
-                Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                 viewModel.loading.postValue(false)
             }
-        })
+        }
 
         binding.scroll.setOnScrollChangeListener {
                 v: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->

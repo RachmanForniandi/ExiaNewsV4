@@ -20,7 +20,8 @@ class HomeViewModel (
     val repository: NewsRepository
     ): ViewModel() {
     val title ="Berita"
-    val category by lazy { MutableLiveData<String>() }
+    val
+            category by lazy { MutableLiveData<String>() }
     val message by lazy { MutableLiveData<String>() }
     val loading by lazy { MutableLiveData<Boolean>() }
     val loadMore by lazy { MutableLiveData<Boolean>() }
@@ -53,7 +54,7 @@ class HomeViewModel (
             }
         }
     }
-    val categories = listOf<CategoryModel>(
+    val categories = listOf(
         CategoryModel("","Berita Utama"),
         CategoryModel("business","Bisnis"),
         CategoryModel("entertainment","Hiburan"),

@@ -19,7 +19,7 @@ class NewsRepository(private val apiClient: APIClient,val db:NewsDao) {
     ): NewsModel {
         return apiClient.getNews(
             BuildConfig.API_KEY,
-            "id",
+            "US",
             category!!,
             query,
             page
