@@ -33,10 +33,7 @@ class BookmarkFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //bindingToolbar.txtTitle.text = viewModel.title
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel =viewModel
-        bindingToolbar.title = viewModel.title
+        bindingToolbar.txtTitle.text = viewModel.title
 
         NewsAdapter.VIEW_TYPE=2
         binding.listBookmark.adapter = newsAdapter

@@ -11,7 +11,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 import rachman.forniandi.exianewsv4.R
 import rachman.forniandi.exianewsv4.databinding.ActivityDetailBinding
-import rachman.forniandi.exianewsv4.databinding.ActivityHomeBinding
 import rachman.forniandi.exianewsv4.databinding.CustomToolbarBinding
 import rachman.forniandi.exianewsv4.source.ArticleModel
 val detailModule = module {

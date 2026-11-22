@@ -42,12 +42,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
 
-        bindingToolbar.title = viewModel.title
+        bindingToolbar.txtTitle.text = viewModel.title
         bindingToolbar.container.inflateMenu(R.menu.menu_search)
-        val menu = binding.toolbar.container.menu
+        val menu = bindingToolbar.container.menu
         val search = menu.findItem(R.id.action_search)
         val searchView = search.actionView as SearchView
 

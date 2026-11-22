@@ -22,6 +22,7 @@ class NewsRepository(private val apiClient: APIClient,val db:NewsDao) {
             "US",
             category!!,
             query,
+
             page
         )
     }

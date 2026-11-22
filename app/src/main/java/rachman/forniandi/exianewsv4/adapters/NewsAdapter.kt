@@ -2,11 +2,14 @@ package rachman.forniandi.exianewsv4.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import loadImage
+import rachman.forniandi.exianewsv4.R
 import rachman.forniandi.exianewsv4.databinding.ItemHeadlineBinding
 import rachman.forniandi.exianewsv4.databinding.ItemNewsBinding
 import rachman.forniandi.exianewsv4.source.ArticleModel
-import rachman.forniandi.exianewsv4.util.FormatUtil
 
 private const val HEADLINES = 1
 private const val NEWS = 2
@@ -21,17 +24,21 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
 
     class NewsHolder(val binding: ItemNewsBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(article: ArticleModel){
-            binding.article = article
-            binding.format = FormatUtil()
+            binding.title.text = article.title ?: ""
+            binding.publishedAt.text = article.publishedAt
+            loadImage(binding.image, article.urlToImage)
         }
     }
 
     class HeadLineHolder(val binding: ItemHeadlineBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(article: ArticleModel){
-            binding.article = article
-            binding.format = FormatUtil()
+            binding.title.text = article.title ?: ""
+            binding.publishedAt.text = article.publishedAt
+            loadImage(binding.image, article.urlToImage)
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return if (viewType== HEADLINES){
@@ -51,14 +58,6 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
         if (VIEW_TYPE== HEADLINES)
             (holder as HeadLineHolder).bind(article)
         else(holder as NewsHolder).bind(article)
-       /* holder.binding.title.text = article.title
-        holder.binding.publishedAt.text = article.publishedAt
-        Glide
-            .with(holder.binding.image)
-            .load(article.urlToImage)
-            .centerCrop()
-            .placeholder(R.drawable.place_holder)
-            .into(holder.binding.image)*/
         holder.itemView.setOnClickListener {
             listener.onClick(article)
         }
