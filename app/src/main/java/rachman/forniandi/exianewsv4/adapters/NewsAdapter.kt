@@ -2,11 +2,9 @@ package rachman.forniandi.exianewsv4.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import loadImage
-import rachman.forniandi.exianewsv4.R
+import rachman.forniandi.exianewsv4.util.FormatUtil
+import rachman.forniandi.exianewsv4.util.loadImage
 import rachman.forniandi.exianewsv4.databinding.ItemHeadlineBinding
 import rachman.forniandi.exianewsv4.databinding.ItemNewsBinding
 import rachman.forniandi.exianewsv4.source.ArticleModel
@@ -25,7 +23,7 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
     class NewsHolder(val binding: ItemNewsBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(article: ArticleModel){
             binding.title.text = article.title ?: ""
-            binding.publishedAt.text = article.publishedAt
+            binding.publishedAt.text = FormatUtil().dateFormat(article.publishedAt)
             loadImage(binding.image, article.urlToImage)
         }
     }
@@ -33,7 +31,7 @@ class NewsAdapter(val articles:ArrayList<ArticleModel>,
     class HeadLineHolder(val binding: ItemHeadlineBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(article: ArticleModel){
             binding.title.text = article.title ?: ""
-            binding.publishedAt.text = article.publishedAt
+            binding.publishedAt.text = FormatUtil().dateFormat(article.publishedAt)
             loadImage(binding.image, article.urlToImage)
         }
     }

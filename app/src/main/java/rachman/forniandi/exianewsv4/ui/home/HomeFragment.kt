@@ -2,9 +2,9 @@ package rachman.forniandi.exianewsv4.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -76,6 +76,16 @@ class HomeFragment : Fragment() {
         viewModel.news.observe(viewLifecycleOwner) {
             if (viewModel.page == 1) newsAdapter.clear()
             newsAdapter.addNews(it.articles)
+            updateVisibility()
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.pgTop.visibility = if (it == true) View.VISIBLE else View.GONE
+            updateVisibility()
+        }
+
+        viewModel.loadMore.observe(viewLifecycleOwner) {
+            binding.pgBottom.visibility = if (it == true) View.VISIBLE else View.GONE
         }
 
         viewModel.message.observe(viewLifecycleOwner) {
@@ -91,6 +101,13 @@ class HomeFragment : Fragment() {
                 if (viewModel.page <= viewModel.total && viewModel.loadMore.value == false) viewModel.fetchNewsData()
             }
         }
+    }
+
+    private fun updateVisibility() {
+        val hasArticles = (viewModel.news.value?.articles?.isNotEmpty() == true)
+        val isLoading = viewModel.loading.value == true
+        binding.imgAlert.visibility = if (hasArticles) View.GONE else View.VISIBLE
+        binding.txtAlert.visibility = if (hasArticles || isLoading) View.GONE else View.VISIBLE
     }
 
     private fun firstLoad(){

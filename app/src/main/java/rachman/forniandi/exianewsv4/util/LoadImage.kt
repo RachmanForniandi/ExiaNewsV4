@@ -1,3 +1,5 @@
+package rachman.forniandi.exianewsv4.util
+
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import rachman.forniandi.exianewsv4.R
